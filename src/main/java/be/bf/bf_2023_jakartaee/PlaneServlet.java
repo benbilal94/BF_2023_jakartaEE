@@ -1,20 +1,20 @@
 package be.bf.bf_2023_jakartaee;
 
 import be.bf.bf_2023_jakartaee.freemarker.ModelAndView;
+import be.bf.bf_2023_jakartaee.helpers.RequestHelper;
 import freemarker.template.TemplateException;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(name = "plane", urlPatterns = {"/plane"})
+
+//@WebServlet(name = "plane", urlPatterns = {"/plane"})
 public class PlaneServlet extends HttpServlet {
 
     private List<String> strs = new ArrayList<>();
@@ -51,7 +51,7 @@ public class PlaneServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String line = req.getReader().readLine();
+        Plane plane = RequestHelper.parseBody(req.getReader(), Plane.class);
 
         resp.getWriter().println("OK");
 

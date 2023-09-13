@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModelAndView {
-    private final String template;
+    private String template;
     private Map<String, Object> model = new HashMap<>();
     public ModelAndView(String view) {
         this.template = view;
@@ -22,6 +22,8 @@ public class ModelAndView {
     public void put(String key, Object value) {
         this.model.put(key, value);
     }
+
+    public void setTemplate(String template) { this.template = template; }
 
     public void process(OutputStream channel) throws IOException, TemplateException {
         try (OutputStreamWriter out = new OutputStreamWriter(channel)) {
